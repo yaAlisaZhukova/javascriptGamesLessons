@@ -1,0 +1,41 @@
+<div id="img-block" 
+    style="	
+      width: 200px;
+      height: 150px;  
+      position: relative;
+      left: 0px;      
+">
+	<img id="hero-img"  
+    style="	
+      width: 200px;
+      height: 150px;	  
+    " 
+	  src="donut.png" />
+</div>
+
+<script> 
+let imgBlock = window.document.querySelector('#img-block'); 
+let imgBlockPosition = 0;
+let speed = 1; 
+//ФУНКЦИИ
+const rightHandler = () => {   
+  imgBlockPosition = imgBlockPosition + speed; 
+  if (imgBlockPosition > 50 || imgBlockPosition < 0) {
+    speed = -speed; 
+  }
+  imgBlock.style.left = `${imgBlockPosition*20}px`;
+}
+// ОБРАБОТЧИКИ СОБЫТИЙ
+let timer = null;
+let onTouchStart = (event) => {
+  timer = setInterval(()=>{
+    rightHandler();
+  },130);
+}
+let onTouchEnd = (event) => {
+  clearInterval(timer);
+}
+
+window.onmousedown = onTouchStart; 
+window.onmouseup = onTouchEnd; 
+</script>
